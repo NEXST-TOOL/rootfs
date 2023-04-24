@@ -1,26 +1,31 @@
 RISCV ?= /opt/riscv
 CROSS_COMPILE ?= riscv64-unknown-linux-gnu-
+INITRAMFS_ROOT := $(shell pwd)
 
-INITRD_PATH := $(shell pwd)/initrd
-
+export RISCV
 export CROSS_COMPILE
-export INITRD_PATH
+export INITRAMFS_ROOT
+
+INITRAMFS_TXT := initramfs.txt
 
 APPS := busybox
 APPS-CLEAN := $(foreach app,$(APPS),$(app)-clean)
 
 .PHONY: all clean $(APPS) $(APPS-CLEAN)
 
-all: $(APPS)
+all: $(INITRAMFS_TXT)
+
+$(INITRAMFS_TXT): $(APPS)
+	./scripts/gen-initramfs-list.sh $@
 
 clean: $(APPS-CLEAN)
-	rm -rf $(INITRD_PATH)
+	rm -f $(INITRAMFS_TXT)
 
-$(APPS): %: $(INITRD_PATH)
+$(APPS): %: $(INITRAMFS_PATH)
 	$(MAKE) -C apps/scripts/$* all
 
 $(APPS-CLEAN): %-clean:
 	$(MAKE) -C apps/scripts/$* clean
 
-$(INITRD_PATH):
-	mkdir -p $(INITRD_PATH)
+$(INITRAMFS_PATH):
+	mkdir -p $(INITRAMFS_PATH)
