@@ -1,3 +1,9 @@
 [submodule "apps/busybox"]
 	path = apps/busybox
 	url = https://git.busybox.net/busybox/
+[submodule "apps/libtirpc"]
+	path = apps/libtirpc
+	url = https://salsa.debian.org/debian/libtirpc.git
+[submodule "apps/lmbench"]
+	path = apps/lmbench
+	url = https://github.com/intel/lmbench

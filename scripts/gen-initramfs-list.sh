@@ -59,7 +59,59 @@ for lib in ${LIBS[@]}; do
 done
 
 cat <<EOF >> $1
-file /bin/busybox ${INITRAMFS_ROOT}/apps/busybox/busybox 755 0 0
-file /etc/inittab ${INITRAMFS_ROOT}/files/etc/inittab 755 0 0
+file /bin/busybox ${INITRAMFS_ROOT}/bin/busybox 755 0 0
+file /etc/inittab ${INITRAMFS_ROOT}/../files/etc/inittab 755 0 0
 slink /init /bin/busybox 755 0 0
+
+file /lib64/lp64d/libtirpc.so.3 ${INITRAMFS_ROOT}/lib/libtirpc.so.3 755 0 0
 EOF
+
+BINS=()
+BINS+=(bw_file_rd)
+BINS+=(bw_mem)
+BINS+=(bw_mmap_rd)
+BINS+=(bw_pipe)
+BINS+=(bw_tcp)
+BINS+=(bw_unix)
+BINS+=(disk)
+BINS+=(enough)
+BINS+=(flushdisk)
+BINS+=(hello)
+BINS+=(lat_connect)
+BINS+=(lat_ctx)
+BINS+=(lat_fcntl)
+BINS+=(lat_fifo)
+BINS+=(lat_fs)
+BINS+=(lat_http)
+BINS+=(lat_mem_rd)
+BINS+=(lat_mmap)
+BINS+=(lat_ops)
+BINS+=(lat_pagefault)
+BINS+=(lat_pipe)
+BINS+=(lat_proc)
+BINS+=(lat_rpc)
+BINS+=(lat_select)
+BINS+=(lat_sem)
+BINS+=(lat_sig)
+BINS+=(lat_syscall)
+BINS+=(lat_tcp)
+BINS+=(lat_udp)
+BINS+=(lat_unix)
+BINS+=(lat_unix_connect)
+BINS+=(line)
+BINS+=(lmdd)
+BINS+=(lmhttp)
+BINS+=(loop_o)
+BINS+=(memsize)
+BINS+=(mhz)
+BINS+=(msleep)
+BINS+=(par_mem)
+BINS+=(par_ops)
+BINS+=(stream)
+BINS+=(timing_o)
+BINS+=(tlb)
+
+for bin in ${LIBS[@]}; do
+    echo "file /bin/$bin ${INITRAMFS_ROOT}/bin/$bin 755 0 0" >> $1
+done
+
