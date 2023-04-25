@@ -111,7 +111,7 @@ BINS+=(stream)
 BINS+=(timing_o)
 BINS+=(tlb)
 
-for bin in ${LIBS[@]}; do
+for bin in ${BINS[@]}; do
     echo "file /bin/$bin ${INITRAMFS_ROOT}/bin/$bin 755 0 0" >> $1
 done
 

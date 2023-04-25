@@ -21,6 +21,8 @@ $(INITRAMFS_ROOT):
 $(INITRAMFS_TXT): $(APPS)
 	./scripts/gen-initramfs-list.sh $@
 
+lmbench: libtirpc
+
 clean: $(APPS-CLEAN)
 	rm -rf $(INITRAMFS_ROOT) $(INITRAMFS_TXT)
 
