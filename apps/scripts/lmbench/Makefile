@@ -8,7 +8,7 @@ CFLAGS += -I$(INITRAMFS_ROOT)/include/tirpc
 LDFLAGS += -L$(INITRAMFS_ROOT)/lib
 LDFLAGS += -ltirpc
 CC = $(CROSS_COMPILE)gcc
-OS = unknown
+override OS = unknown
 
 export CFLAGS
 export LDFLAGS
