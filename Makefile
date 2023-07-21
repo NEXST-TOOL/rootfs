@@ -8,7 +8,7 @@ export INITRAMFS_ROOT
 
 INITRAMFS_TXT := initramfs.txt
 
-APPS := libtirpc busybox lmbench
+APPS := libtirpc busybox lmbench dhrystone
 APPS-CLEAN := $(foreach app,$(APPS),$(app)-clean)
 
 .PHONY: all clean $(APPS) $(APPS-CLEAN)
