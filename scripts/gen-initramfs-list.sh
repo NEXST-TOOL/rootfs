@@ -115,10 +115,12 @@ for bin in ${BINS[@]}; do
     echo "file /bin/$bin ${INITRAMFS_ROOT}/bin/$bin 755 0 0" >> $1
 done
 
-########################## 在INITRAMFS中添加自定义文件夹 ####################
-####################### 请将你的目标文件夹放在my-dir###################
-target_directory="$INITRAMFS_ROOT/my-dir"
-mkdir -p $target_directory
+########################################################################
+
+# Recursively add files and subdirectories under ${INITRAMFS_ROOT}/my-dir to ramfs
+
+target_directory="${INITRAMFS_ROOT}/my-dir"
+mkdir -p ${target_directory}
 log=$1
 
 function process_directory {
@@ -128,7 +130,7 @@ function process_directory {
     if [ -d "$item" ]; then
       # 处理文件夹
       local dirname=$(basename "$item")
-      local path=${item#$INITRAMFS_ROOT}
+      local path=${item#${INITRAMFS_ROOT}}
       local permissions="755 0 0"
       echo "dir $path $permissions" >> $log
       process_directory "$item"  # 递归处理子文件夹
@@ -136,7 +138,7 @@ function process_directory {
       # 处理文件
       local permissions="755 0 0"
       #local path=$(realpath $item)
-      local path=${item#$INITRAMFS_ROOT}
+      local path=${item#${INITRAMFS_ROOT}}
       echo "file $path $item $permissions" >> $log
     fi
   done
@@ -155,7 +157,7 @@ fi
 # 处理自定义文件夹
 dir_permissions="755 0 0"
 abs_path=$(realpath $target_directory)
-ramfs_path=${abs_path#$INITRAMFS_ROOT}
+ramfs_path=${abs_path#${INITRAMFS_ROOT}}
 echo "dir $ramfs_path $dir_permissions" >> $log
 
 process_directory "$target_directory"
