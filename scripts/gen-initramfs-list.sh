@@ -128,16 +128,16 @@ function process_directory {
 
   for item in "$dir"/*; do
     if [ -d "$item" ]; then
-      # 处理文件夹
+      # process current directory
       local dirname=$(basename "$item")
       local path=${item#${INITRAMFS_ROOT}}
       local permissions="755 0 0"
       echo "dir $path $permissions" >> $log
-      process_directory "$item"  # 递归处理子文件夹
+      # process subdirectories
+      process_directory "$item" 
     elif [ -f "$item" ]; then
-      # 处理文件
+      # process file
       local permissions="755 0 0"
-      #local path=$(realpath $item)
       local path=${item#${INITRAMFS_ROOT}}
       echo "file $path $item $permissions" >> $log
     fi
@@ -154,7 +154,7 @@ if [ ! -d "$target_directory" ]; then
   exit 1
 fi
 
-# 处理自定义文件夹
+# process user-defined directories
 dir_permissions="755 0 0"
 abs_path=$(realpath $target_directory)
 ramfs_path=${abs_path#${INITRAMFS_ROOT}}
