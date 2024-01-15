@@ -110,6 +110,7 @@ BINS+=(par_ops)
 BINS+=(stream)
 BINS+=(timing_o)
 BINS+=(tlb)
+BINS+=(perf)
 
 for bin in ${BINS[@]}; do
     echo "file /bin/$bin ${INITRAMFS_ROOT}/bin/$bin 755 0 0" >> $1
