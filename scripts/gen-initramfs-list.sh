@@ -28,6 +28,7 @@ dir /var/log 755 0 0
 
 nod /dev/console 644 0 0 c 5 1
 nod /dev/null 644 0 0 c 1 3
+nod /dev/nvme0n1 644 0 0 b 259 0
 EOF
 
 LIBS=()
