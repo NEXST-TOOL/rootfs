@@ -34,7 +34,7 @@ LIBS=()
 LIBS+=(ld-linux-riscv64-lp64d.so.1)
 
 for lib in ${LIBS[@]}; do
-    p="$RISCV/sysroot/lib/$lib"
+    p="$RISCV/lib/riscv64-linux-gnu/$lib"
     if [ ! -f $p ]; then
         echo "Could not find library $p"
         exit 1
@@ -50,12 +50,12 @@ LIBS+=(libpthread.so.0)
 LIBS+=(libresolv.so.2)
 
 for lib in ${LIBS[@]}; do
-    p="$RISCV/sysroot/lib64/lp64d/$lib"
+    p="$RISCV/lib/riscv64-linux-gnu/$lib"
     if [ ! -f $p ]; then
         echo "Could not find library $p"
         exit 1
     fi
-    echo "file /lib64/lp64d/$lib $p 755 0 0" >> $1
+    echo "file /lib/$lib $p 755 0 0" >> $1
 done
 
 cat <<EOF >> $1
@@ -63,7 +63,7 @@ file /bin/busybox ${INITRAMFS_ROOT}/bin/busybox 755 0 0
 file /etc/inittab ${INITRAMFS_ROOT}/../files/etc/inittab 755 0 0
 slink /init /bin/busybox 755 0 0
 
-file /lib64/lp64d/libtirpc.so.3 ${INITRAMFS_ROOT}/lib/libtirpc.so.3 755 0 0
+file /lib/riscv64-linux-gnu/libtirpc.so.3 ${INITRAMFS_ROOT}/lib/libtirpc.so.3 755 0 0
 EOF
 
 BINS=()
