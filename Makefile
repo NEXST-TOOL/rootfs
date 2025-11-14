@@ -1,5 +1,5 @@
-RISCV ?= /opt/riscv
-CROSS_COMPILE ?= riscv64-unknown-linux-gnu-
+RISCV ?= /
+CROSS_COMPILE ?= riscv64-linux-gnu-
 INITRAMFS_ROOT := $(shell pwd)/initramfs
 
 export RISCV
