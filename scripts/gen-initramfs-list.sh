@@ -25,6 +25,8 @@ dir /var 755 0 0
 dir /var/tmp 755 0 0
 dir /root 755 0 0
 dir /var/log 755 0 0
+dir /usr/share 755 0 0
+dir /usr/share/udhcpc 755 0 0
 
 nod /dev/console 644 0 0 c 5 1
 nod /dev/null 644 0 0 c 1 3
@@ -61,6 +63,9 @@ done
 cat <<EOF >> $1
 file /bin/busybox ${INITRAMFS_ROOT}/bin/busybox 755 0 0
 file /etc/inittab ${INITRAMFS_ROOT}/../files/etc/inittab 755 0 0
+file /etc/shadow ${INITRAMFS_ROOT}/../files/etc/shadow 600 0 0
+file /etc/passwd ${INITRAMFS_ROOT}/../files/etc/passwd 600 0 0
+file /usr/share/udhcpc/default.script ${INITRAMFS_ROOT}/../files/usr/share/udhcpc/default.script 755 0 0
 slink /init /bin/busybox 755 0 0
 
 file /lib/riscv64-linux-gnu/libtirpc.so.3 ${INITRAMFS_ROOT}/lib/libtirpc.so.3 755 0 0
