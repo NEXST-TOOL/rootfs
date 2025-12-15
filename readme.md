@@ -5,9 +5,10 @@
 1. Set `RISCV` and `CROSS_COMPILE` environment variables.
 
     The following values are used by default:
+
     ```
-    RISCV=/opt/riscv
-    CROSS_COMPILE=riscv64-unknown-linux-gnu-
+    RISCV=/usr/riscv64-linux-gnu
+    CROSS_COMPILE=riscv64-linux-gnu-
     ```
 
 2. Run `make` to compile all apps. You can optionally specify `make -jN` for parallel compilation.

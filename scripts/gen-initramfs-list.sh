@@ -36,7 +36,7 @@ LIBS=()
 LIBS+=(ld-linux-riscv64-lp64d.so.1)
 
 for lib in ${LIBS[@]}; do
-    p="$RISCV/lib/riscv64-linux-gnu/$lib"
+    p="$RISCV/lib/$lib"
     if [ ! -f $p ]; then
         echo "Could not find library $p"
         exit 1
@@ -52,7 +52,7 @@ LIBS+=(libpthread.so.0)
 LIBS+=(libresolv.so.2)
 
 for lib in ${LIBS[@]}; do
-    p="$RISCV/lib/riscv64-linux-gnu/$lib"
+    p="$RISCV/lib/$lib"
     if [ ! -f $p ]; then
         echo "Could not find library $p"
         exit 1
