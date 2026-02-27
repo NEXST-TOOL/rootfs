@@ -1,4 +1,4 @@
-RISCV ?= /
+RISCV ?= /usr/riscv64-linux-gnu
 CROSS_COMPILE ?= riscv64-linux-gnu-
 INITRAMFS_ROOT := $(shell pwd)/initramfs
 
