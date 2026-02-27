@@ -40,7 +40,7 @@ for lib in ${LIBS[@]}; do
         echo "Could not find library $p"
         exit 1
     fi
-    echo "file /lib/riscv64-linux-gnu/$lib $p 755 0 0" >> $1
+    echo "file /lib/$lib $p 755 0 0" >> $1
 done
 
 LIBS=()
