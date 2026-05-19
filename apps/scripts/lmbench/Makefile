@@ -4,7 +4,7 @@ REPO_PATH := ../../$(APP_NAME)
 TARGET_FILE := $(INITRAMFS_ROOT)/lib/libtirpc.so
 
 CFLAGS += -O
-CFLAGS += -I$(INITRAMFS_ROOT)/include/tirpc
+CFLAGS += -I$(INITRAMFS_ROOT)/include/tirpc -L$(INITRAMFS_ROOT)/lib
 LDFLAGS += -L$(INITRAMFS_ROOT)/lib
 LDFLAGS += -ltirpc
 CC = $(CROSS_COMPILE)gcc
